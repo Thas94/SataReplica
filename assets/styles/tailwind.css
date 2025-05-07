@@ -4,3 +4,16 @@
 @import "tailwindcss/utilities";
 
 @import "./base.css";
+
+@layer components {
+    #pageHeader{
+        left: 0;
+        opacity: .8;
+        /* position: fixed; */
+        transition: background-color .3s;
+        top: 0;
+        width: 100%;
+        z-index: 99;
+    }
+
+}

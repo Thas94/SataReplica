@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@primevue/nuxt-module'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@primevue/nuxt-module',
+    '@nuxt/image',
+  ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
       options: {
