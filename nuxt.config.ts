@@ -6,6 +6,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@primevue/nuxt-module',
     '@nuxt/image',
+    '@nuxtjs/google-fonts',
+    '@nuxt/icon',
   ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
@@ -19,5 +21,10 @@ export default defineNuxtConfig({
         tailwindcss: {},
         autoprefixer: {},
     },
+  },
+  googleFonts: {
+    families: {
+      Montserrat: true
+    }
   },
 })

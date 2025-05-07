@@ -13,6 +13,8 @@ npm install @primevue/forms
 npm i tailwindcss-primeui
 npm install -D postcss-import
 npx nuxi@latest module add image
+npx nuxi@latest module add google-fonts
+npx nuxi module add icon
 
 
 Make sure to install dependencies:
