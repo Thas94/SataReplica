@@ -14,7 +14,7 @@
             <div class="flex justify-center mb-2 pt-8">
                 <h1 class="font-extrabold md:font-extrabold md:text-3xl">CONFERENCE AGENDA</h1>
             </div>
-            <div class="md:h-1 underline-2"></div>
+            <div class="md:h-1 agenda-underline"></div>
             <div>dvsdvsdv</div>
         </div>
     </section>
@@ -73,5 +73,19 @@
         }
     }
 
+    /* underline */
+    @media (min-width: 768px){
+        .md\:h-1{
+            height: 3px;
+        }
+    }
+
+    .agenda-underline{
+        margin-bottom: 20px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: green;
+        width: 100px;
+    }
 
 </style>
