@@ -4,6 +4,17 @@ Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduct
 
 ## Setup
 
+Make sure to install modules/dependencies:
+
+npx nuxi@latest module add tailwindcss
+npm install primevue
+npm install --save-dev @primevue/nuxt-module
+npm install @primevue/forms
+npm i tailwindcss-primeui
+npm install -D postcss-import
+npx nuxi@latest module add image
+
+
 Make sure to install dependencies:
 
 ```bash
