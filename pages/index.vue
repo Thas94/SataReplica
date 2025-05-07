@@ -18,6 +18,17 @@
             <div>dvsdvsdv</div>
         </div>
     </section>
+
+
+
+    <div id="footer">
+        <header>
+            <div class="md:justify-end footer-container">
+                <img src="/img/footer.png" alt="" id="footer-pic">
+            </div>
+        </header>
+    </div>
+
 </template>
 
 <script setup>
@@ -42,7 +53,7 @@
         z-index: 99;
     }
 
-    .header-container{
+    .header-container, .footer-container{
         align-items: center;
         display: flex;
     }
@@ -86,6 +97,29 @@
         margin-right: auto;
         background-color: green;
         width: 100px;
+    }
+
+
+    /* footer */
+    #footer{
+        bottom: 0;
+        padding-bottom: .5rem;
+        left: 0;
+        opacity: .8;
+        position: fixed;
+        width: 100%;
+        z-index: 99;
+        background-color: black;
+    }
+
+    @media (min-width: 768px){
+        .md\:justify-end{
+            justify-content: flex-end;
+        }
+    }
+
+    #footer-pic{
+        height: 70px;
     }
 
 </style>
