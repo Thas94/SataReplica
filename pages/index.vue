@@ -17,9 +17,9 @@
             <div class="md:h-1 agenda-underline"></div>
             <div class="tab-selector-container">
                 <div class="md:w-[30rem] text-white text-sm tab-selector">
-                    <div v-for="day in agendaDays" :key="day.id" class="px-2 text-center cursor-pointer" @click="switchTabs(day.id)">
+                    <div v-for="day in agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="switchTabs(day.dayId)">
                         <div class="font-semibold">
-                            <span :class="tabStyle.txtColor">{{ day.day }}</span>
+                            <span :class="day.txtStyle">{{ day.day }}</span>
                         </div>
                         <div class="mt-0.5 text-white text-xs">{{ day.date }}</div>
                     </div>
@@ -85,9 +85,9 @@
     })
 
     const agendaDays = ref([
-        {id: 1, day: "Day 1", date: "8 May"},
-        {id: 2, day: "Day 2", date: "9 May"},
-        {id: 3, day: "Day 3", date: "10 May"}
+        {dayId: 1, day: "Day 1", date: "8 May", txtStyle: "md:text-xl text-green-500"}, //will be determined by the current day
+        {dayId: 2, day: "Day 2", date: "9 May", txtStyle: "md:text-xl text-white"},
+        {dayId: 3, day: "Day 3", date: "10 May", txtStyle: "md:text-xl text-white"}
     ])
 
     const agendas = ref([
@@ -118,22 +118,19 @@
         }
     ])
 
-    console.log('agendas', agendas.value)
-
     const switchTabs = (id) => {
         switch (id) {
             case 1:
                 tabStyle.value.position = '0%'
-                tabStyle.value.txtColor = 'md:text-xl text-green-500'
+                setDayStyle(id)
                 break;
             case 2:
                 tabStyle.value.position = '33.3333%'
-                tabStyle.value.txtColor = 'md:text-xl text-green-500'
-
+                setDayStyle(id)
                 break;
             case 3:
                 tabStyle.value.position = '66.6667%'
-                tabStyle.value.txtColor = 'md:text-xl text-green-500'
+                setDayStyle(id)
                 break;      
             default:
                 break;
@@ -141,6 +138,11 @@
         console.log('id selected', id)
     }
 
+    const setDayStyle = (id) => {
+        agendaDays.value.forEach(function(item, index){
+            item.dayId == id ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
+        })
+    }
 
 </script>
 
