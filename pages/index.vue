@@ -28,7 +28,7 @@
             </div>
             <div class="mt-5">
                 <div class="gap-4 md:gap-16 md:px-72 agenda-list">
-                    <div v-for="agnd in agendas" :key="agnd.agendaId" class="agenda-card">
+                    <div v-for="agnd in agenda" :key="agnd.agendaId" class="agenda-card">
                         <div class="card-header">
                             <h2 class="font-medium text-sm md:text-lg font schedule-title">{{ agnd.topic }}</h2>
                         </div>
@@ -78,6 +78,8 @@
 
 <script setup>
 
+    const agenda = ref([{}])
+
     const tabStyle = ref({
         width: "33.3333%",
         position: "0%",
@@ -115,33 +117,69 @@
                 id: 1,
                 name: "Jacob Munodawafa"
             }]
-        }
+        },
+        {
+            agendaId: 3, dayId: 2, topic: "Delegates Registration", startTime: "8:30", endDate: "10:00",
+            speakers: [{
+                id: 4,
+                name: "Jacob Munodawafa "
+            }],
+            facilitators: [{}]
+        },
+        {
+            agendaId: 4,dayId: 2, topic: "SATA EXECUTIVE SECRETARY ADDRESS", startTime: "9:40", endDate: "29:05",
+            speakers: [{
+                id: 5,
+                name: "Mpho Sithole"
+            }],
+            facilitators: [{
+            }]
+        },
+        {
+            agendaId: 5, dayId: 3, topic: "HANDING OVER OF THE CHAIRMANSHIP CEREMONY", startTime: "8:30", endDate: "10:00",
+            speakers: [{
+                id: 4,
+                name: "Keabetswe Segole"
+            }],
+            facilitators: [{}]
+        },
+        {
+            agendaId: 6,dayId: 3, topic: "Photo opportunity", startTime: "9:40", endDate: "12:05",
+            speakers: [{
+            }],
+            facilitators: [{
+                id: 2,
+                name: "Selby Khuzwayo"
+            }]
+        },
     ])
 
-    const switchTabs = (id) => {
-        switch (id) {
+    agenda.value = agendas.value.filter(x => x.dayId === 1) //will be determined by the current day from the store
+
+    const switchTabs = (dayId) => {
+        switch (dayId) {
             case 1:
                 tabStyle.value.position = '0%'
-                setDayStyle(id)
+                showTabContent(dayId)
                 break;
             case 2:
                 tabStyle.value.position = '33.3333%'
-                setDayStyle(id)
+                showTabContent(dayId)
                 break;
             case 3:
                 tabStyle.value.position = '66.6667%'
-                setDayStyle(id)
+                showTabContent(dayId)
                 break;      
             default:
                 break;
         }
-        console.log('id selected', id)
     }
 
-    const setDayStyle = (id) => {
+    const showTabContent = (dayId) => {
         agendaDays.value.forEach(function(item, index){
-            item.dayId == id ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
+            item.dayId == dayId ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
         })
+        agenda.value = agendas.value.filter(x => x.dayId === dayId)
     }
 
 </script>
