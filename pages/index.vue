@@ -48,11 +48,11 @@
                                 </ul>
                             </div>
                             <!-- facilitators -->
-                            <div class="info-block" v-if="agnd.facilitators !== null">
+                            <div class="info-block" v-if="agnd.facilitators[0].name !== undefined">
                                 <h5 class="font-bold text-xl md:text-2xl info-label flex justify-center">Facilitators </h5>
-                                <ul v-for="spk in agnd.facilitators" :key="spk.id">
+                                <ul v-for="fac in agnd.facilitators" :key="fac.id">
                                     <div class="px-2 font-medium">
-                                        <li class="w-full text-base md:text-xl flex justify-center">{{ spk.name }}</li>
+                                        <li class="w-full text-base md:text-xl flex justify-center">{{ fac.name }}</li>
                                     </div>
                                 </ul>
                             </div>
@@ -63,7 +63,17 @@
             </div>
         </div>
     </section>
-
+    <section class="pt-10" id="our-speakers">
+        <div id="speakers">
+            <div>
+                <h1 class="font-extrabold md:font-extrabold text-white md:text-3xl">Meet Our Speak</h1>
+                <div class="md:h-1 agenda-underline"></div>
+                <div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     <div id="footer">
@@ -116,6 +126,10 @@
             facilitators: [{
                 id: 1,
                 name: "Jacob Munodawafa"
+            },
+            {
+                id: 3,
+                name: "Selby11 Khuzwayo111"
             }]
         },
         {
@@ -389,6 +403,22 @@
     .font-bold{
         font-weight: 700;
     }
+
+    /* meet our speakers */
+
+    #speakers{
+        color: white;
+        text-align: center;
+        background-color: black;
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+    }
+
+    @media (min-width: 768px){
+        .md\:font-extrabold{
+            font-weight: 800;
+        }
+    } 
 
     /* footer */
 
