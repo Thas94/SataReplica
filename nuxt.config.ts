@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     '@nuxt/icon',
+    '@pinia/nuxt'
   ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {

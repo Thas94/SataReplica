@@ -15,6 +15,7 @@ npm install -D postcss-import
 npx nuxi@latest module add image
 npx nuxi@latest module add google-fonts
 npx nuxi module add icon
+npm i pinia @pinia/nuxt
 
 
 Make sure to install dependencies:

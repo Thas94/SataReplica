@@ -88,6 +88,10 @@
 
 <script setup>
 
+    const agnd = useAgendaStore()
+    agnd.GetAgendaInfo()
+    console.log('bvvc', agnd.agendas)
+
     const agenda = ref([{}])
 
     const tabStyle = ref({
@@ -286,14 +290,14 @@
     /* agenda list */
     @media (min-width: 768px){
         .md\:px-72{
-            padding-left: 300px;
-            padding-right: 180px;
+            padding-left: 18rem;
+            padding-right: 18rem;
         }
     }
 
     @media (min-width: 768px){
         .md\:gap-16{
-            gap: 40px;
+            gap: 4rem;
         }
     }
 
