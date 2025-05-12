@@ -7,6 +7,11 @@ export const useAgendaStore = defineStore('agendaStore', () => {
         position: "0%",
         txtColor: "md:text-xl text-white"
     })
+    const agendaDays = ref([
+        {dayId: 1, day: "Day 1", date: "8 May", txtStyle: "md:text-xl text-green-500"}, //will be determined by the current day
+        {dayId: 2, day: "Day 2", date: "9 May", txtStyle: "md:text-xl text-white"},
+        {dayId: 3, day: "Day 3", date: "10 May", txtStyle: "md:text-xl text-white"}
+    ])
 
     const GetAgendaInfo = async () => {
         const results = await $fetch('/api/agendas/agenda')
@@ -17,6 +22,7 @@ export const useAgendaStore = defineStore('agendaStore', () => {
     return {
         tabStyle,
         agendas, 
-        GetAgendaInfo
+        GetAgendaInfo,
+        agendaDays
     }
 })

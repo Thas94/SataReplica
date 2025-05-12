@@ -17,13 +17,13 @@
             <div class="md:h-1 agenda-underline"></div>
             <div class="tab-selector-container">
                 <div class="md:w-[30rem] text-white text-sm tab-selector">
-                    <div v-for="day in agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="switchTabs(day.dayId)">
+                    <div v-for="day in agnd.agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="switchTabs(day.dayId)">
                         <div class="font-semibold">
                             <span :class="day.txtStyle">{{ day.day }}</span>
                         </div>
                         <div class="mt-0.5 text-white text-xs">{{ day.date }}</div>
                     </div>
-                    <div class="bottom-0 absolute bg-green-500 h-1 transition-all duration-300" :style="{'width': tabStyle.width, 'left': tabStyle.position}"></div>
+                    <div class="bottom-0 absolute bg-green-500 h-1 transition-all duration-300" :style="{'width': agnd.tabStyle.width, 'left': agnd.tabStyle.position}"></div>
                 </div>
             </div>
             <div class="mt-5">
@@ -90,21 +90,8 @@
 
     const agnd = useAgendaStore()
     agnd.GetAgendaInfo()
-    console.log('bvvc', agnd.agendas)
 
     const agenda = ref([{}])
-
-    const tabStyle = ref({
-        width: "33.3333%",
-        position: "0%",
-        txtColor: "md:text-xl text-white"
-    })
-
-    const agendaDays = ref([
-        {dayId: 1, day: "Day 1", date: "8 May", txtStyle: "md:text-xl text-green-500"}, //will be determined by the current day
-        {dayId: 2, day: "Day 2", date: "9 May", txtStyle: "md:text-xl text-white"},
-        {dayId: 3, day: "Day 3", date: "10 May", txtStyle: "md:text-xl text-white"}
-    ])
 
     const agendas = ref([
         {
@@ -177,15 +164,15 @@
     const switchTabs = (dayId) => {
         switch (dayId) {
             case 1:
-                tabStyle.value.position = '0%'
+                agnd.tabStyle.position = '0%'
                 showTabContent(dayId)
                 break;
             case 2:
-                tabStyle.value.position = '33.3333%'
+                agnd.tabStyle.position = '33.3333%'
                 showTabContent(dayId)
                 break;
             case 3:
-                tabStyle.value.position = '66.6667%'
+                agnd.tabStyle.position = '66.6667%'
                 showTabContent(dayId)
                 break;      
             default:
@@ -194,7 +181,7 @@
     }
 
     const showTabContent = (dayId) => {
-        agendaDays.value.forEach(function(item, index){
+        agnd.agendaDays.forEach(function(item, index){
             item.dayId == dayId ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
         })
         agenda.value = agendas.value.filter(x => x.dayId === dayId)
