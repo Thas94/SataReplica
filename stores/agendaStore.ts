@@ -1,7 +1,10 @@
 import { defineStore } from "pinia";
+import {type AgendaResults} from '../types/agendaModel'
 
 export const useAgendaStore = defineStore('agendaStore', () => {
-    const agendas = ref([{}])
+    const agendas = ref([{}]) as Ref<AgendaResults[]>;
+    const agenda = ref([{}]) as Ref<AgendaResults[]>;
+
     const tabStyle = ref({
         width: "33.3333%",
         position: "0%",
@@ -15,13 +18,14 @@ export const useAgendaStore = defineStore('agendaStore', () => {
 
     const GetAgendaInfo = async () => {
         const results = await $fetch('/api/agendas/agenda')
-        agendas.value = <any>results
-        //console.log('xxxx', agendas.value)
+        agendas.value = <AgendaResults[]>results
+        agenda.value = agendas.value.filter(x => x.dayId === 1)
     }
 
     return {
         tabStyle,
         agendas, 
+        agenda,
         GetAgendaInfo,
         agendaDays
     }

@@ -28,31 +28,40 @@
             </div>
             <div class="mt-5">
                 <div class="gap-4 md:gap-16 md:px-72 agenda-list">
-                    <div v-for="agnd in agenda" :key="agnd.agendaId" class="agenda-card">
+                    <div v-for="agnd in agnd.agenda" :key="agnd.agendaId" class="agenda-card">
                         <div class="card-header">
                             <h2 class="font-medium text-sm md:text-lg font schedule-title">{{ agnd.topic }}</h2>
                         </div>
                         <div class="card-meta">
                             <div class="flex justify-center gap-1 items-center text-xs md:text-lg meta-item">
                                 <i class="pi pi-clock icon"></i>
-                                <strong> {{ agnd.startTime }} - {{ agnd.endDate }}</strong>
+                                <strong> {{ agnd.startTime }} - {{ agnd.endTime }}</strong>
                             </div> 
                         </div>
                         <div class="card-footer">
                             <!-- speakers -->
                             <div class="info-block text-xs">
-                                <ul v-for="spk in agnd.speakers" :key="spk.id">
+                                <ul v-for="spk in agnd.speakers" :key="spk.speakerId">
                                     <div class="px-2 pt-2 font-medium">
-                                        <li class="w-full text-base md:text-xl flex justify-center">{{ spk.name }}</li>
+                                        <li class="w-full text-base md:text-xl flex justify-center">{{ spk.speakerName }}</li>
                                     </div>
                                 </ul>
                             </div>
                             <!-- facilitators -->
-                            <div class="info-block" v-if="agnd.facilitators[0].name !== undefined">
+                            <div class="info-block" v-if="agnd.facilitators !== null">
                                 <h5 class="font-bold text-xl md:text-2xl info-label flex justify-center">Facilitators </h5>
-                                <ul v-for="fac in agnd.facilitators" :key="fac.id">
+                                <ul v-for="fac in agnd.facilitators" :key="fac.facilitatorId">
                                     <div class="px-2 font-medium">
-                                        <li class="w-full text-base md:text-xl flex justify-center">{{ fac.name }}</li>
+                                        <li class="w-full text-base md:text-xl flex justify-center">{{ fac.facilitatorName }}</li>
+                                    </div>
+                                </ul>
+                            </div>
+                            <!-- panel members -->
+                            <div class="info-block" v-if="agnd.panelMembers !== null">
+                                <h5 class="font-bold text-xl md:text-2xl info-label flex justify-center">Panel Members </h5>
+                                <ul v-for="pan in agnd.panelMembers" :key="pan.panelMemberId">
+                                    <div class="px-2 font-medium">
+                                        <li class="w-full text-base md:text-xl flex justify-center">{{ pan.panelMemberName }}</li>
                                     </div>
                                 </ul>
                             </div>
@@ -91,76 +100,6 @@
     const agnd = useAgendaStore()
     agnd.GetAgendaInfo()
 
-    const agenda = ref([{}])
-
-    const agendas = ref([
-        {
-            agendaId: 1, dayId: 1, topic: "Welcome Coffee & Tea", startTime: "8:00", endDate: "9:00",
-            speakers: [{}],
-            facilitators: [{}]
-        },
-        {
-            agendaId: 2,dayId: 1, topic: "OPENING REMARKS BY THE MC", startTime: "9:00", endDate: "9:05",
-            speakers: [{
-                id: 1,
-                name: "Jacob Munodawafa"
-            },
-            {
-                id: 2,
-                name: "Keabetswe Segole"
-            }
-            ,
-            {
-                id: 3,
-                name: "Selby Khuzwayo"
-            }],
-            facilitators: [{
-                id: 1,
-                name: "Jacob Munodawafa"
-            },
-            {
-                id: 3,
-                name: "Selby11 Khuzwayo111"
-            }]
-        },
-        {
-            agendaId: 3, dayId: 2, topic: "Delegates Registration", startTime: "8:30", endDate: "10:00",
-            speakers: [{
-                id: 4,
-                name: "Jacob Munodawafa "
-            }],
-            facilitators: [{}]
-        },
-        {
-            agendaId: 4,dayId: 2, topic: "SATA EXECUTIVE SECRETARY ADDRESS", startTime: "9:40", endDate: "29:05",
-            speakers: [{
-                id: 5,
-                name: "Mpho Sithole"
-            }],
-            facilitators: [{
-            }]
-        },
-        {
-            agendaId: 5, dayId: 3, topic: "HANDING OVER OF THE CHAIRMANSHIP CEREMONY", startTime: "8:30", endDate: "10:00",
-            speakers: [{
-                id: 4,
-                name: "Keabetswe Segole"
-            }],
-            facilitators: [{}]
-        },
-        {
-            agendaId: 6,dayId: 3, topic: "Photo opportunity", startTime: "9:40", endDate: "12:05",
-            speakers: [{
-            }],
-            facilitators: [{
-                id: 2,
-                name: "Selby Khuzwayo"
-            }]
-        },
-    ])
-
-    agenda.value = agendas.value.filter(x => x.dayId === 1) //will be determined by the current day from the store
-
     const switchTabs = (dayId) => {
         switch (dayId) {
             case 1:
@@ -184,7 +123,7 @@
         agnd.agendaDays.forEach(function(item, index){
             item.dayId == dayId ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
         })
-        agenda.value = agendas.value.filter(x => x.dayId === dayId)
+        agnd.agenda = agnd.agendas.filter(x => x.dayId === dayId)
     }
 
 </script>
