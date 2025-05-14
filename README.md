@@ -16,6 +16,7 @@ npx nuxi@latest module add image
 npx nuxi@latest module add google-fonts
 npx nuxi module add icon
 npm i pinia @pinia/nuxt
+npm i date-fns
 
 
 Make sure to install dependencies:

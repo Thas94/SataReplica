@@ -13,17 +13,14 @@ export interface AgendaResults {
 export interface Facilitator {
     facilitatorId:   number;
     facilitatorName: string;
-    agendaLinks:     any[];
 }
 
 export interface PanelMember {
     panelMemberId:   number;
     panelMemberName: string;
-    agendaLinks:     any[];
 }
 
 export interface Speaker {
     speakerId:   number;
     speakerName: string;
-    agendaLinks: any[];
 }

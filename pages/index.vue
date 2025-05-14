@@ -17,11 +17,11 @@
             <div class="md:h-1 agenda-underline"></div>
             <div class="tab-selector-container">
                 <div class="md:w-[30rem] text-white text-sm tab-selector">
-                    <div v-for="day in agnd.agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="switchTabs(day.dayId)">
+                    <div v-for="day in agnd.agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="agnd.switchTabs(day.dayId)">
                         <div class="font-semibold">
-                            <span :class="day.txtStyle">{{ day.day }}</span>
+                            <span :class="day.txtStyle"> Day {{ day.dayId }}</span>
                         </div>
-                        <div class="mt-0.5 text-white text-xs">{{ day.date }}</div>
+                        <div class="mt-0.5 text-white text-xs">{{ day.dateFormatted }}</div>
                     </div>
                     <div class="bottom-0 absolute bg-green-500 h-1 transition-all duration-300" :style="{'width': agnd.tabStyle.width, 'left': agnd.tabStyle.position}"></div>
                 </div>
@@ -96,35 +96,11 @@
 </template>
 
 <script setup>
+    import {format, formatDate} from 'date-fns'
 
     const agnd = useAgendaStore()
+    agnd.GetAgendaDays()
     agnd.GetAgendaInfo()
-
-    const switchTabs = (dayId) => {
-        switch (dayId) {
-            case 1:
-                agnd.tabStyle.position = '0%'
-                showTabContent(dayId)
-                break;
-            case 2:
-                agnd.tabStyle.position = '33.3333%'
-                showTabContent(dayId)
-                break;
-            case 3:
-                agnd.tabStyle.position = '66.6667%'
-                showTabContent(dayId)
-                break;      
-            default:
-                break;
-        }
-    }
-
-    const showTabContent = (dayId) => {
-        agnd.agendaDays.forEach(function(item, index){
-            item.dayId == dayId ? item.txtStyle = "md:text-xl text-green-500" : item.txtStyle = "md:text-xl text-white"
-        })
-        agnd.agenda = agnd.agendas.filter(x => x.dayId === dayId)
-    }
 
 </script>
 
@@ -216,7 +192,7 @@
     /* agenda list */
     @media (min-width: 768px){
         .md\:px-72{
-            padding-left: 18rem;
+            padding-left: 25rem;
             padding-right: 18rem;
         }
     }
