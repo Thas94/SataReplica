@@ -4,6 +4,8 @@ import {type AgendaDays} from '../types/agendaDaysModel'
 import {format, formatDate} from 'date-fns'
 
 export const useAgendaStore = defineStore('agendaStore', () => {
+        const tkn = useAuthenticationStore()
+    
     const agendas = ref([{}]) as Ref<AgendaResults[]>;
     const agenda = ref([{}]) as Ref<AgendaResults[]>;
     const agendaDays = ref([{}]) as Ref<AgendaDays[]>;
@@ -15,7 +17,9 @@ export const useAgendaStore = defineStore('agendaStore', () => {
     })
 
     const GetAgendaDays = async () => {
-        const results = await $fetch('/api/agendas/agendaDays')
+        debugger
+        console.log('cvbvc', tkn.token)
+        const results = await $fetch(`/api/agendas/agendaDays`)
         agendaDays.value = <AgendaDays[]>results
         for (let i = 0; i < agendaDays.value.length; i++) {
             agendaDays.value[i].dateFormatted = format(agendaDays.value[i].date, "LLLL dd")
@@ -27,7 +31,7 @@ export const useAgendaStore = defineStore('agendaStore', () => {
     }
 
     const GetAgendaInfo = async () => {
-        const results = await $fetch('/api/agendas/agenda')
+        const results = await $fetch(`/api/agendas/agenda`)
         agendas.value = <AgendaResults[]>results
         agenda.value = agendas.value.filter(x => x.dayId === 1)
     }

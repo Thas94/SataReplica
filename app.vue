@@ -5,3 +5,9 @@
     </div>
   </div>
 </template>
+
+<script setup>
+debugger
+  const tkn = useAuthenticationStore()
+  tkn.GetToken()
+</script>

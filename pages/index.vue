@@ -19,7 +19,7 @@
                 <div class="md:w-[30rem] text-white text-sm tab-selector">
                     <div v-for="day in agnd.agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="agnd.switchTabs(day.dayId)">
                         <div class="font-semibold">
-                            <span :class="day.txtStyle"> Day {{ day.dayId }}</span>
+                            <span :class="day.textStyle"> Day {{ day.dayId }}</span>
                         </div>
                         <div class="mt-0.5 text-white text-xs">{{ day.dateFormatted }}</div>
                     </div>
@@ -72,6 +72,17 @@
             </div>
         </div>
     </section>
+
+    <section id="conferenceMap" class="pb-8 pt-8 md:pt-12">
+        <div>
+            <h1 class="px-8 font-extrabold md:font-extrabold md:text-3xl">Conference Map</h1>
+            <div class="relative mx-auto max-w-5xl">
+                <img @mousemove="getMousePosition" class="w-full" src="https://tft-dna-brand-architects-cc.s3.af-south-1.amazonaws.com/image-gallery/Conference/New+Expo+Floor+Plan-3.jpg" alt="">
+                <div class="absolute cursor-pointer" style="left: 76%;top: 33%;height: 5.5%;width: 16.5%;transform:translate(-50%, -50%);">testbdfbvfgb</div>
+            </div>
+        </div>
+    </section>
+
     <section class="pt-10" id="our-speakers">
         <div id="speakers">
             <div>
@@ -98,6 +109,23 @@
 <script setup>
     import {format, formatDate} from 'date-fns'
 
+    const mouseX = ref(0)
+    const mouseY = ref(0)
+
+
+    // onMounted(() =>{
+    //     getMousePosition
+    // })
+
+    const getMousePosition = (Event) => {
+        if(Event.screenX >= 879 && Event.screenX <= 1046)
+        {
+            if(Event.screenY >= 299 && Event.screenY <= 388){
+            }
+        }
+        console.log(Event)
+    }
+
     const agnd = useAgendaStore()
     agnd.GetAgendaDays()
     agnd.GetAgendaInfo()
@@ -105,6 +133,31 @@
 </script>
 
 <style scoped>
+
+    @media (min-width: 768px){
+        .md\:pt-12{
+            padding-top: 3rem;
+        }
+    }
+
+    #conferenceMap{
+        display: flex;
+        justify-content: center;
+        margin: 1rem;
+    }
+
+    @media (min-width: 768px){
+        .md\:font-extrabold{
+            font-weight: 800;
+        }
+    }
+
+    @media (min-width: 768px){
+        .md\:text-3xl{
+            font-size: 1.87rem;
+            line-height: 2.25rem;
+        }
+    }
 
     /* header/ nav */
     #header-pic {
