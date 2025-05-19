@@ -1,15 +1,18 @@
+import { Config } from "primevue";
 import { useAuthenticationStore } from "~/stores/authenticationStore";
 
 export default defineEventHandler(async (event) => {
-    debugger
-    const tkn = useAuthenticationStore()
-    const tokk = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTYXRhUmVwbGljYUFwaSIsImp0aSI6IjI2M2IzY2I2LWI1ZDAtNDU0Mi05ZjEzLTRiNWYxODAyMmM5MCIsImlhdCI6MTc0NzY3ODIzNCwiVXNlck5hbWUiOiJzdHJpbmciLCJQYXNzd29yZCI6InN0cmluZyIsIm5iZiI6MTc0NzY3ODIzNCwiZXhwIjoxNzQ3NjgwMDM0LCJpc3MiOiJTYXRhUmVwbGljYUFwaSIsImF1ZCI6IlNhdGFSZXBsaWNhQXBpIn0.0P3IUsC7BWQTYJZfWGZ2z9pF2mv0fNf0seF-OgI1g8w'
 
-    const agendas = await $fetch("https://localhost:44311/Agenda/GetAgendaInfo", {
+    const config = useRuntimeConfig()
+
+    const tkn = useAuthenticationStore()
+    const tokk = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJTYXRhUmVwbGljYUFwaSIsImp0aSI6IjlkOGMxZTAxLWRlYWItNDcxMi1iZjkzLWI1ZGI1YjY3YjA1NiIsImlhdCI6MTc0NzY4MzM2NSwiVXNlck5hbWUiOiJzdHJpbmciLCJQYXNzd29yZCI6InN0cmluZyIsIm5iZiI6MTc0NzY4MzM2NSwiZXhwIjoxNzQ3Njg1MTY1LCJpc3MiOiJTYXRhUmVwbGljYUFwaSIsImF1ZCI6IlNhdGFSZXBsaWNhQXBpIn0.ZG-RQkIrWwU-iGYWP6FBO7pq4R40jeltq0_2ByJ14Xg'
+
+    const agendas = await $fetch(`${config.apiUrl}/Agenda/GetAgendaInfo`, {
         method: 'GET',
         onRequest({ request, options, error }){
-            options.headers.set('Authorization', `Bearer ${tkn.token}`)
-        }
+            options.headers.set('Authorization', tokk)
+            }
     })
 
     return agendas;

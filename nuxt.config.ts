@@ -28,4 +28,7 @@ export default defineNuxtConfig({
       Montserrat: true
     }
   },
+  runtimeConfig: {
+    apiUrl: ''
+  }
 })
