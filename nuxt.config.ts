@@ -8,7 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/google-fonts',
     '@nuxt/icon',
-    '@pinia/nuxt'
+    '@pinia/nuxt',
+    '@sidebase/nuxt-auth'
   ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
@@ -30,6 +31,21 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     apiUrl: '',
-    apiToken: ''
-  }
+    apiToken: '',
+    authClientId: '',
+    authClientSecret: ''
+  },
+  // auth: {
+  //   isEnabled: true,
+  //   disableServerSideAuth: false,
+  //   originEnvKey: 'AUTH_ORIGIN',
+  //   baseURL: 'http://localhost:3000/api/auth',
+  //   provider: { 
+  //     type: 'authjs',
+  //   defaultProvider: 'github' },
+  //   sessionRefresh: {
+  //     enablePeriodically: true,
+  //     enableOnWindowFocus: true,
+  //   }
+  // }
 })
