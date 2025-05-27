@@ -9,7 +9,8 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@nuxt/icon',
     '@pinia/nuxt',
-    '@sidebase/nuxt-auth'
+    '@sidebase/nuxt-auth',
+    '@nuxtjs/supabase'
   ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
@@ -35,6 +36,11 @@ export default defineNuxtConfig({
     authClientId: '',
     authClientSecret: ''
   },
+  supabase: {
+    url: process.env.SUPABASE_URL,
+    key: process.env.SUPABASE_KEY,
+    redirect: false,
+  }
   // auth: {
   //   isEnabled: true,
   //   disableServerSideAuth: false,

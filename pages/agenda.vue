@@ -1,5 +1,5 @@
 <template>
-    <div id="header">
+    <!-- <div id="header">
         <header class="">
             <div class="md:justify-start header-container">
                 <img src="/img/logo.png" alt="" id="header-pic">
@@ -20,7 +20,6 @@
                     <div v-for="day in agnd.agendaDays" :key="day.dayId" class="px-2 text-center cursor-pointer" @click="agnd.switchTabs(day.dayId)">
                         <div class="font-semibold">
                             <span :class="day.textStyle"> Day {{ day.dayId }}</span>
-                            <!-- <span class="text-green-500"></span> -->
                         </div>
                         <div class="mt-0.5 text-white text-xs">{{ day.dateFormatted }}</div>
                     </div>
@@ -40,7 +39,6 @@
                             </div> 
                         </div>
                         <div class="card-footer">
-                            <!-- speakers -->
                             <div class="info-block text-xs">
                                 <ul v-for="spk in agnd.speakers" :key="spk.speakerId">
                                     <div class="px-2 pt-2 font-medium">
@@ -48,7 +46,6 @@
                                     </div>
                                 </ul>
                             </div>
-                            <!-- facilitators -->
                             <div class="info-block" v-if="agnd.facilitators !== null">
                                 <h5 class="font-bold text-xl md:text-2xl info-label flex justify-center">Facilitators </h5>
                                 <ul v-for="fac in agnd.facilitators" :key="fac.facilitatorId">
@@ -57,7 +54,6 @@
                                     </div>
                                 </ul>
                             </div>
-                            <!-- panel members -->
                             <div class="info-block" v-if="agnd.panelMembers !== null">
                                 <h5 class="font-bold text-xl md:text-2xl info-label flex justify-center">Panel Members </h5>
                                 <ul v-for="pan in agnd.panelMembers" :key="pan.panelMemberId">
@@ -78,8 +74,6 @@
         <div>
             <h1 class="px-8 font-extrabold md:font-extrabold md:text-3xl">Conference Map</h1>
             <div class="relative mx-auto max-w-5xl">
-                <!-- <img @mousemove="getMousePosition" class="w-full" src="https://tft-dna-brand-architects-cc.s3.af-south-1.amazonaws.com/image-gallery/Conference/New+Expo+Floor+Plan-3.jpg" alt="">
-                <div class="absolute cursor-pointer" style="left: 76%;top: 33%;height: 5.5%;width: 16.5%;transform:translate(-50%, -50%);">testbdfbvfgb</div> -->
             </div>
         </div>
     </section>
@@ -103,7 +97,7 @@
                 <img src="/img/footer.png" alt="" id="footer-pic">
             </div>
         </header>
-    </div>
+    </div> -->
 
 </template>
 
@@ -113,23 +107,9 @@
     const mouseX = ref(0)
     const mouseY = ref(0)
 
-
-    // onMounted(() =>{
-    //     getMousePosition
-    // })
-
-    const getMousePosition = (Event) => {
-        if(Event.screenX >= 879 && Event.screenX <= 1046)
-        {
-            if(Event.screenY >= 299 && Event.screenY <= 388){
-            }
-        }
-        console.log(Event)
-    }
-
-    const agnd = useAgendaStore()
-    agnd.GetAgendaDays()
-    agnd.GetAgendaInfo()
+    // const agnd = useAgendaStore()
+    // agnd.GetAgendaDays()
+    // agnd.GetAgendaInfo()
 
 </script>
 
