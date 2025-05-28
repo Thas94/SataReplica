@@ -11,11 +11,16 @@
     })
     const client = useSupabaseClient()
     const user = useSupabaseUser()
-    const router = useRouter()
+
+    onMounted(() => {
+        watchEffect(() => {
+            if(!user.value) navigateTo('/login')
+        })
+    })
 
     async function signOut() {
         await client.auth.signOut()
-        router.push('/login')
+        navigateTo('/login')
     }
 </script>
 

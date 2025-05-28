@@ -27,6 +27,7 @@ async function SignOut() {
         You are currently {{ status }}
         <button v-if="loggedIn" @click="SignOut">SignOut</button>
         <button v-else @click="SignIn">SignIn</button>
+        <span>{{ data }}</span>
     </div>
 </template>
 
