@@ -10,7 +10,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@pinia/nuxt',
     '@sidebase/nuxt-auth',
-    '@nuxtjs/supabase'
   ],
   css: ["@/assets/styles/tailwind.css"],
   primevue: {
@@ -36,11 +35,9 @@ export default defineNuxtConfig({
     authClientId: '',
     authClientSecret: ''
   },
-  supabase: {
-    url: process.env.SUPABASE_URL,
-    key: process.env.SUPABASE_KEY,
-    redirect: false,
-  }
+  auth: {
+    globalAppMiddleware: true,
+  },
   // auth: {
   //   isEnabled: true,
   //   disableServerSideAuth: false,
@@ -48,7 +45,7 @@ export default defineNuxtConfig({
   //   baseURL: 'http://localhost:3000/api/auth',
   //   provider: { 
   //     type: 'authjs',
-  //   defaultProvider: 'github' },
+  //   defaultProvider: 'credentials' },
   //   sessionRefresh: {
   //     enablePeriodically: true,
   //     enableOnWindowFocus: true,

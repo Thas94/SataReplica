@@ -1,27 +1,42 @@
 <template>
     <div>
-        <button @click="signOut">log out</button>
-        {{ user }}
+        <button @click="() => signOut({ callbackUrl: '/login' })">
+    Signout 
+  </button>
+        <h1>Profile</h1>
+        <pre>{{ data }}</pre>
+        
     </div>
 </template>
 
-<script setup>
-    definePageMeta({
-        middleware: ["auth"]
-    })
-    const client = useSupabaseClient()
-    const user = useSupabaseUser()
+<script setup lang="ts">
+const {
+  status,
+  lastRefreshedAt,
+  getCsrfToken,
+  getProviders,
+  getSession,
+  signIn,
+  signOut
+} = useAuth()
+        const {data} = await useFetch('/api/userSession')
 
-    onMounted(() => {
-        watchEffect(() => {
-            if(!user.value) navigateTo('/login')
-        })
-    })
+    // definePageMeta({
+    //     middleware: ["auth"]
+    // })
+    // const client = useSupabaseClient()
+    // const user = useSupabaseUser()
 
-    async function signOut() {
-        await client.auth.signOut()
-        navigateTo('/login')
-    }
+    // onMounted(() => {
+    //     watchEffect(() => {
+    //         if(!user.value) navigateTo('/login')
+    //     })
+    // })
+
+    // async function signOut() {
+    //     await client.auth.signOut()
+    //     navigateTo('/login')
+    // }
 </script>
 
 <style lang="scss" scoped>

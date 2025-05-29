@@ -31,7 +31,6 @@
 </template>
 
 <script setup>
-    const client = useSupabaseClient()
     const email = ref("")
     const password = ref(null)
     const errorMesg = ref(null)
@@ -39,12 +38,12 @@
 
     async function signUp(){
         try{
-            const {error} = await client.auth.signUp({
-                email: email.value,
-                password: password.value
-            })
+            // const {error} = await client.auth.signUp({
+            //     email: email.value,
+            //     password: password.value
+            // })
             
-            if(error) throw error
+            // if(error) throw error
             successMsg.value = "Check your email to confirm your account."
         }
         catch(error){
