@@ -1,5 +1,5 @@
 <template>
-    <!-- <div id="header">
+    <div id="header">
         <header class="">
             <div class="md:justify-start header-container">
                 <img src="/img/logo.png" alt="" id="header-pic">
@@ -97,19 +97,16 @@
                 <img src="/img/footer.png" alt="" id="footer-pic">
             </div>
         </header>
-    </div> -->
+    </div>
 
 </template>
 
 <script setup>
     import {format, formatDate} from 'date-fns'
 
-    const mouseX = ref(0)
-    const mouseY = ref(0)
-
-    // const agnd = useAgendaStore()
-    // agnd.GetAgendaDays()
-    // agnd.GetAgendaInfo()
+    const agnd = useAgendaStore()
+    agnd.GetAgendaDays()
+    agnd.GetAgendaInfo()
 
 </script>
 

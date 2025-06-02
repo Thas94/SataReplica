@@ -32,7 +32,7 @@
         definePageMeta({
         auth: {
             unauthenticatedOnly: true,
-            navigateAuthenticatedTo: '/profile',
+            navigateAuthenticatedTo: '/agenda',
         },
         })
         const {signIn} = useAuth()
