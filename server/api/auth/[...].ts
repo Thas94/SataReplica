@@ -1,17 +1,20 @@
 import { NuxtAuthHandler } from '#auth'
 import  CredentialsProvider from 'next-auth/providers/credentials'
+import { navigateTo } from 'nuxt/app'
 
 const config = useRuntimeConfig()
 //console.log('config', config)
 export default NuxtAuthHandler({
   pages: {
-    signIn: '/login'
+    signIn: 'auth/login',
   },
   callbacks: {
     jwt({token, user}){
       if(user){
+        // @ts-expect-error
         token.sessionToken = user.token
         token.email = user.email
+        // @ts-expect-error
         token.fullname = user.fullName
         token.tokenExpiryDate = 30 //same in the API
       }

@@ -102,6 +102,11 @@
 </template>
 
 <script setup>
+
+    definePageMeta({
+        middleware: ["auth"]
+    })
+
     import {format, formatDate} from 'date-fns'
 
     const agnd = useAgendaStore()

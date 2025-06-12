@@ -17,7 +17,6 @@ export const useAgendaStore = defineStore('agendaStore', () => {
     })
 
     const GetAgendaDays = async () => {
-        console.log('cvbvc', tkn.token)
         const results = await $fetch(`/api/agendas/agendaDays`)
         agendaDays.value = <AgendaDays[]>results
         for (let i = 0; i < agendaDays.value.length; i++) {

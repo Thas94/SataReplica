@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="() => signOut({ callbackUrl: '/login' })">
+        <button @click="() => signOut({ callbackUrl: 'auth/login' })">
     Signout 
   </button>
         <h1>Profile</h1>
@@ -10,16 +10,22 @@
 </template>
 
 <script setup lang="ts">
-const {
-  status,
-  lastRefreshedAt,
-  getCsrfToken,
-  getProviders,
-  getSession,
-  signIn,
-  signOut
-} = useAuth()
-        const {data} = await useFetch('/api/userSession')
+    const {
+    status,
+    lastRefreshedAt,
+    getCsrfToken,
+    getProviders,
+    getSession,
+    signIn,
+    signOut
+    } = useAuth()
+    const {data} = await useFetch('/api/userSession')
+    definePageMeta({
+        auth: {
+            unauthenticatedOnly: false,
+            navigateAuthenticatedTo: '/',
+        },
+    })
 
     // definePageMeta({
     //     middleware: ["auth"]

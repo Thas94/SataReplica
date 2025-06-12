@@ -7,6 +7,7 @@ export default defineEventHandler(async (event) => {
     const days = await $fetch(`${config.apiUrl}/Agenda/GetAgendaDays`, {
         method: 'GET',
         onRequest({ request, options, error }){
+            // @ts-expect-error
             options.headers.set('Authorization', `Bearer ${session?.user.token}`)
         }
     })

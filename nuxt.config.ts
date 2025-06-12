@@ -35,9 +35,9 @@ export default defineNuxtConfig({
     authClientId: '',
     authClientSecret: ''
   },
-  auth: {
-    globalAppMiddleware: true,
-  },
+  // auth: {
+  //   globalAppMiddleware: true,
+  // },
   // auth: {
   //   isEnabled: true,
   //   disableServerSideAuth: false,
