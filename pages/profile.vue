@@ -6,6 +6,7 @@
         <h1>Profile</h1>
         <pre>{{ data }}</pre>
         <p>==============================</p>
+        {{ lastRefreshedAt }}
     </div>
 </template>
 

@@ -16,6 +16,8 @@ export default NuxtAuthHandler({
         token.email = user.email
         // @ts-expect-error
         token.fullname = user.fullName
+        // @ts-expect-error
+        token.errorMessage = user.errorMessage
         token.tokenExpiryDate = 30 //same in the API
       }
       return token
@@ -29,6 +31,7 @@ export default NuxtAuthHandler({
           fullname: additionalUserData.fullname,
           email: additionalUserData.email,
           token: additionalUserData.sessionToken,
+          errorMessage: additionalUserData.errorMessage,
           tokenExpiryDate: 30
         }
       }
