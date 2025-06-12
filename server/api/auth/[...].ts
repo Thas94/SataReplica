@@ -11,13 +11,13 @@ export default NuxtAuthHandler({
   callbacks: {
     jwt({token, user}){
       if(user){
-        // @ts-expect-error
-        token.sessionToken = user.token
-        token.email = user.email
-        // @ts-expect-error
-        token.fullname = user.fullName
-        // @ts-expect-error
-        token.errorMessage = user.errorMessage
+        const userData = <any>user
+        token.sessionToken = userData.token
+        token.email = userData.email
+        token.fullname = userData.fullName
+        token.errorMessage = userData.errorMessage
+        token.role = userData.role
+        token.permission = userData.permission
         token.tokenExpiryDate = 30 //same in the API
       }
       return token
@@ -32,6 +32,8 @@ export default NuxtAuthHandler({
           email: additionalUserData.email,
           token: additionalUserData.sessionToken,
           errorMessage: additionalUserData.errorMessage,
+          role: additionalUserData.role,
+          permission: additionalUserData.permission,
           tokenExpiryDate: 30
         }
       }
