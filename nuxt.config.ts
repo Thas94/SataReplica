@@ -35,6 +35,11 @@ export default defineNuxtConfig({
     authClientId: '',
     authClientSecret: ''
   },
+  auth: {
+    sessionRefresh: {
+      enableOnWindowFocus: true,
+    }
+  }
   // auth: {
   //   globalAppMiddleware: true,
   // },

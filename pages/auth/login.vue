@@ -6,15 +6,14 @@
                   <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                       Login
                   </h1>
-                  <form 
-                  @submit.prevent="UserLogin" class="space-y-4 md:space-y-6" action="#">
+                  <form @submit.prevent="UserLogin" class="space-y-4 md:space-y-6" action="#">
                       <div>
                           <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                          <input v-model="email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
+                          <input v-model="form.email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="">
                       </div>
                       <div>
                           <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                          <input v-model="password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                          <input v-model="form.password" type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       </div>
                       <button v-if="!isLoading" type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">{{ !isLoading ? "Login": "Logging In..." }}</button>
                       <button v-if="isLoading" disabled type="button" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
@@ -38,32 +37,33 @@
     </template>
     
     <script setup lang="ts">
-        const email = ref("")
-        const password = ref(null)
+        import {format, formatDate, subHours, toDate} from 'date-fns'
+
+        const form = ref({
+            email: '',
+            password: ''
+        })
         const router = useRouter()
         const {signIn, status, lastRefreshedAt} = useAuth()
         const isLoading = ref(false)
         const {loading} = useAuthState()
-        const {data, refresh} = await useFetch('/api/userSession')
+        const {data} = await useFetch('/api/userSession')
         const errorMesg = ref(null)
+        const session = ref(<any>data)
         // //@ts-expect-error
         // errorMesg.value = data?.user?.errorMessage
 
         async function UserLogin() {
             isLoading.value = true
-            await signIn('credentials', { email: email.value, password: password.value })
+            await signIn('credentials', form.value)
         }
 
         onMounted(() => {
             watchEffect(() => {
                 if(status.value == 'authenticated'){
                     isLoading.value = false
-                    navigateTo('/')
-                }       
-                // if(data?.value.user.errorMessage != null){
-                //     // @ts-expect-error 
-                //     errorMesg.value = data.value.user.errorMessage
-                // }   
+                    navigateTo('/') 
+                } 
             })
         })
 

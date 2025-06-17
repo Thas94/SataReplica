@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="() => signOut({ callbackUrl: 'auth/login' })">
+        <button @click="() => userSignOut()">
     Signout 
   </button>
         <h1>Profile</h1>
@@ -20,32 +20,16 @@
     signIn,
     signOut
     } = useAuth()
-    // const {data} = await useFetch('/api/userSession')
     const data = await $fetch('/api/userSession')
 
-    definePageMeta({
-        // auth: {
-        //     unauthenticatedOnly: false,
-        //     navigateAuthenticatedTo: '/',
-        // },
-    })
+    async function userSignOut() {
+        await signOut()
+    }
 
-    // definePageMeta({
-    //     middleware: ["auth"]
-    // })
-    // const client = useSupabaseClient()
-    // const user = useSupabaseUser()
+     definePageMeta({
+         middleware: ["auth"]
+     })
 
-    // onMounted(() => {
-    //     watchEffect(() => {
-    //         if(!user.value) navigateTo('/login')
-    //     })
-    // })
-
-    // async function signOut() {
-    //     await client.auth.signOut()
-    //     navigateTo('/login')
-    // }
 </script>
 
 <style lang="scss" scoped>

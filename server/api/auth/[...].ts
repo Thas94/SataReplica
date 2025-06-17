@@ -11,36 +11,24 @@ export default NuxtAuthHandler({
   callbacks: {
     jwt({token, user}){
       if(user){
-        const userData = <any>user
-        token.sessionToken = userData.token
-        token.email = userData.email
-        token.fullname = userData.fullName
-        token.errorMessage = userData.errorMessage
-        token.role = userData.role
-        token.permission = userData.permission
-        token.tokenExpiryDate = 30 //same in the API
+        token = {
+          ... token,
+          ... user
+        }
       }
       return token
     },
     async session({session, token}){
       // Fetch data OR add previous data from the JWT callback.
-      const additionalUserData = <any>token
-      return{
-        ...session,
-        user:{
-          fullname: additionalUserData.fullname,
-          email: additionalUserData.email,
-          token: additionalUserData.sessionToken,
-          errorMessage: additionalUserData.errorMessage,
-          role: additionalUserData.role,
-          permission: additionalUserData.permission,
-          tokenExpiryDate: 30
-        }
+      session.user = {
+        ... token,
+        ... session.user
       }
+      return session
     }
   },
   providers: [
-    // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+    // @ts-expect-error
     CredentialsProvider.default({ 
       name: 'Credentials',
       async authorize(credentials: any){
