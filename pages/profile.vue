@@ -6,7 +6,7 @@
         <h1>Profile</h1>
         <pre>{{ data }}</pre>
         <p>==============================</p>
-        {{ lastRefreshedAt }}
+        last refreshed : {{ lastRefreshedAt }}
     </div>
 </template>
 
@@ -20,12 +20,14 @@
     signIn,
     signOut
     } = useAuth()
-    const {data} = await useFetch('/api/userSession')
+    // const {data} = await useFetch('/api/userSession')
+    const data = await $fetch('/api/userSession')
+
     definePageMeta({
-        auth: {
-            unauthenticatedOnly: false,
-            navigateAuthenticatedTo: '/',
-        },
+        // auth: {
+        //     unauthenticatedOnly: false,
+        //     navigateAuthenticatedTo: '/',
+        // },
     })
 
     // definePageMeta({
