@@ -4,8 +4,10 @@
     </div>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
+    definePageMeta({
+        middleware: ["role-auth"]
+    })
 </script>
 
 <style lang="scss" scoped>

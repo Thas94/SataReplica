@@ -1,7 +1,7 @@
 export default defineNuxtRouteMiddleware(async (to) => {
     const {status} = useAuth()
     const router = useRouter()
-
+    
     if (status.value == 'authenticated') {
         const session = <any>(await $fetch('/api/userSession'))
         switch (session.user?.role){

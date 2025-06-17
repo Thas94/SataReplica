@@ -4,7 +4,7 @@
     Signout 
   </button>
         <h1>Profile</h1>
-        <pre>{{ data }}</pre>
+        <pre>{{ data }}</pre> <p>{{ status }}</p>
         <p>==============================</p>
         last refreshed : {{ lastRefreshedAt }}
     </div>

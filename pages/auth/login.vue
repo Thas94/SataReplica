@@ -56,7 +56,7 @@
 
         onMounted(() => {
             watchEffect(() => {
-                if(status.value === 'authenticated'){
+                if(status.value == 'authenticated'){
                     isLoading.value = false
                     navigateTo('/')
                 }       
